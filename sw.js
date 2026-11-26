@@ -1,5 +1,5 @@
 // Offline-first: the app works with no internet after the first open.
-const CACHE = 'lumi-tahed-v1';
+const CACHE = 'lumi-tahed-v2';
 const FILES = ['./', './index.html', './styles.css', './app.js', './db.js', './logic.js', './lumi.js', './manifest.json', './icon.svg', './icon-192.png', './icon-512.png', './audio/index.json'];
 
 self.addEventListener('install', (e) => {

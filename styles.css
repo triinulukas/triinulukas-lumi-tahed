@@ -57,7 +57,7 @@ body.talking .lumi .talk { display: inline; animation: talk .22s ease-in-out inf
   box-shadow: 0 5px 0 rgba(0,0,0,.15);
 }
 .round-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 rgba(0,0,0,.15); }
-.parent-door { position: fixed; top: calc(env(safe-area-inset-top) + 6px); right: 6px; z-index: 5; width: 44px; height: 44px; border-radius: 50%; background: rgba(255,255,255,.12); font-size: 18px; opacity: .5; }
+.parent-door { touch-action: none; -webkit-user-select: none; user-select: none; position: fixed; top: calc(env(safe-area-inset-top) + 6px); right: 6px; z-index: 5; width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,.12); font-size: 20px; opacity: .5; }
 .parent-door.holding { animation: fill 2s linear forwards; }
 @keyframes fill { to { background: rgba(255,255,255,.9); opacity: 1; } }
 

@@ -110,11 +110,20 @@ function home() {
 }
 
 // The parent area opens only after holding the small gear for 2 seconds.
+// Touch and pointer events are both handled: iOS Safari may cancel a pointer hold when the finger wobbles.
 function parentDoor(btn) {
   let t = null;
-  const cancel = () => { clearTimeout(t); btn.classList.remove('holding'); };
-  btn.addEventListener('pointerdown', (e) => { e.preventDefault(); btn.classList.add('holding'); t = setTimeout(() => { cancel(); parent(); }, 2000); });
-  ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => btn.addEventListener(ev, cancel));
+  const start = (e) => {
+    e.preventDefault();
+    if (t) return;
+    btn.classList.add('holding');
+    t = setTimeout(() => { t = null; parent(); }, 2000);
+  };
+  const cancel = () => { clearTimeout(t); t = null; btn.classList.remove('holding'); };
+  btn.addEventListener('touchstart', start, { passive: false });
+  btn.addEventListener('touchend', cancel);
+  btn.addEventListener('pointerdown', (e) => { if (e.pointerType === 'touch') return; start(e); });
+  btn.addEventListener('pointerup', (e) => { if (e.pointerType !== 'touch') cancel(); });
   btn.addEventListener('contextmenu', (e) => e.preventDefault());
 }
 
